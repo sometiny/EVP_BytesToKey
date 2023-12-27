@@ -54,3 +54,7 @@ outputs
 28532018f9a058cdf84c0bc9dc7d5d8a
 */
 ```
+
+
+nodejs的createCipher方法使用的参数为：EVP_BytesToKey(password, key_length, iv_length, 'md5', '', 1);
+即：使用MD5算法，salt为空，轮数为1；
