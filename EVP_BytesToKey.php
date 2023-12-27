@@ -1,3 +1,4 @@
+<?php
 /**
  * @param string $password
  * @param int $nkey 需要生成的密钥长度
