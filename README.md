@@ -1,6 +1,8 @@
 # EVP_BytesToKey
 implementations of openssl EVP_BytesToKey: php, c#, javascript
 
+这些方法不建议单独使用，除非key和iv必须从其他秘钥扩展。
+
 ### EVP_BytesToKey原理
 数据都是基于二进制的，非hex
 ```text
@@ -40,9 +42,9 @@ outputs
 ### PHP测试
 ```php
 
-$key = '12345678901234561234567890123456';
+$password = '12345678901234561234567890123456';
 
-$devd = EVP_BytesToKey($key, 32, 16, 'md5', '', 1);
+$devd = EVP_BytesToKey($password, 32, 16, 'md5', '', 1);
 $key = $devd['key'];
 $iv = $devd['iv'];
 echo bin2hex($key) . "\r\n";
@@ -53,9 +55,19 @@ outputs
 9b69a546f0c55fd22d2f5b6fdce27deb55d817b5d610488cfaa88c21c8a094eb
 28532018f9a058cdf84c0bc9dc7d5d8a
 */
+
+//调用
+$cipher = @openssl_encrypt('hello world!', 'aes-256-cbc', $key, 1, $iv);
+
+//同nodejs里面如下调用效果一致
+//crypto.createCipher('aes-256-cbc', $password)
+//crypto.createCipheriv('aes-256-cbc', key, iv)
+        
 ```
 
 ### javascript测试
+可以用于nodejs，非必要不建议使用，直接使用nodejs的`crypto.createCipheriv(algorithm, key, iv[, options])`方法即可。
+
 ```javascript
 const EVP_BytesToKey = require('./EVP_BytesToKey.js')
 
