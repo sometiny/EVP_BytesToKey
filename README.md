@@ -1,5 +1,5 @@
 # EVP_BytesToKey
-implementations for openssl EVP_BytesToKey: php, c#
+implementations for openssl EVP_BytesToKey: php, c#, javascript
 
 ### EVP_BytesToKey原理
 数据都是基于二进制的，非hex
