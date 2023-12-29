@@ -24,8 +24,8 @@ iv = all_hash[key_length, iv_length]
 
 ### C#测试
 ```csharp
-
-(byte[] key, byte[] iv) = EVP_BytesToKey("12345678901234561234567890123456".ToASCIIBytes(), 32, 16, "md5", null, 1);
+var password = "12345678901234561234567890123456".ToASCIIBytes();
+(byte[] key, byte[] iv) = EVP_BytesToKey(password, 32, 16, "md5", null, 1);
 
 Console.WriteLine(key.ToHexString());
 Console.WriteLine(iv.ToHexString());
